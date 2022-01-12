@@ -31,22 +31,18 @@ const destroyBoxes = function () {
 };
 
 const onBtnActionsClick = function (event) {
+  destroyBoxes();
   console.log(event);
   const action = event.target.dataset.action;
-  switch (action) {
-    case "create":
-      if (input.value > 0) {
-        createBoxes(input.value);
-      } else {
-        alert("Введите количество боксов!");
-      }
-
-      break;
-
-    case "destroy":
-      destroyBoxes();
-      break;
-  }
+  if (action === "create") {
+    if (input.value > 0) {
+      createBoxes(input.value);
+    } else {
+      alert("Введите количество боксов!");
+    }
+  }   
+      
+  
 };
 
 btnActions.addEventListener("click", onBtnActionsClick);
