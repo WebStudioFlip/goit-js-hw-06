@@ -2,12 +2,51 @@ function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
-const btnActions = document.querySelector("#controls")
+const btnActions = document.querySelector("#controls");
 
-const onBtnActionsClick = function (event) {     
-  const quantity = this.parentNode.querySelector("input").value
-  this.parentNode.querySelector(".color").textContent = color
-  document.querySelector("body").style.backgroundColor = color
-}
+const input = document.querySelector("input");
 
-btnActions.addEventListener("click", onBtnActionsClick)
+const createBoxes = function (amount) {
+  const num = Number.parseInt(amount);
+  let boxes = [];
+  for (let index = 0; index < num; index++) {
+    let box = document.createElement("div");
+    box.style.width = 30 + index * 10 + "px";
+    box.style.height = 30 + index * 10 + "px";
+    box.style.margin = "10px";
+    box.style.backgroundColor = getRandomHexColor();
+    console.dir(box);
+    boxes.push(box);
+  }
+  document.querySelector("#boxes").append(...boxes);
+  document.querySelector("#boxes").style.displey;
+};
+
+const destroyBoxes = function () {
+  const boxes = [...document.querySelector("#boxes").children];
+  boxes.forEach((el) => {
+    console.log(el);
+    el.remove();
+  });
+};
+
+const onBtnActionsClick = function (event) {
+  console.log(event);
+  const action = event.target.dataset.action;
+  switch (action) {
+    case "create":
+      if (input.value > 0) {
+        createBoxes(input.value);
+      } else {
+        alert("Введите количество боксов!");
+      }
+
+      break;
+
+    case "destroy":
+      destroyBoxes();
+      break;
+  }
+};
+
+btnActions.addEventListener("click", onBtnActionsClick);
