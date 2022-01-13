@@ -12,4 +12,7 @@ const onBtnCounterClick = function(event) {
    this.parentNode.querySelector("#value").textContent = counterValue;
 }
 
-document.querySelector(".btn-counter").parentNode.addEventListener("click", onBtnCounterClick)
+document.querySelectorAll(".btn-counter").forEach(button=>{
+    button.addEventListener("click", onBtnCounterClick)
+})
+
