@@ -1,6 +1,6 @@
 const onNameBlur = function (event) {   
-    
-    if (event.currentTarget.dataset.length===event.currentTarget.value.length) {
+    console.log(event.currentTarget.dataset)
+    if (Number.parseInt(event.currentTarget.dataset.length)===event.currentTarget.value.length) {
         event.currentTarget.classList.add("valid")
         event.currentTarget.classList.remove("invalid")
         return
